@@ -6,7 +6,7 @@ function App() {
 
 
   const fetchData = async () => {
-    const results = await axios.get('/.netlify/functions/yelp')
+    const results = await axios.get('/Foodies/.netlify/functions/yelp')
     console.log(results);
   }
   useEffect(() => {
