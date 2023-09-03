@@ -1,7 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
-
+import {useEffect} from 'react'
+import axios from 'axios'
 function App() {
+
+
+  const fetchData = async () => {
+    const results = await axios.get('/.netlify/functions/yelp')
+    console.log(results);
+  }
+  useEffect(() => {
+    fetchData()
+  }, [])
+  
   return (
     <div className="App">
       <header className="App-header">
