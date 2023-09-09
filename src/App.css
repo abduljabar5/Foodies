@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+.header-banner {
+  background-image: url('https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80');
+  height: 600px !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.banner {
+  background-image: url('https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
