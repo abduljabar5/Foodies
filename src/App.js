@@ -1,26 +1,22 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './App.css';
 import {useEffect} from 'react'
 import axios from 'axios'
 import Home from './pages/Home'
 import Navbar from './components/navbar';
-
+import Footer from './components/Footer';
+import Search from './pages/Search'
 function App() {
 
-
-  const fetchData = async () => {
-    const results = await axios.get('/.netlify/functions/yelp')
-    console.log(results);
-  }
-  useEffect(() => {
-    fetchData()
-  }, [])
-  
   return (
-    <div className="">
-      <Navbar/>
-     <Home />
-    </div>
+    <Router>
+            <Navbar/>
+    <Routes>
+      <Route path="/" exact element= {<Home />} />
+      <Route path="/search" element={<Search />} />
+    </Routes>
+         <Footer />
+        </Router>
   );
 }
 

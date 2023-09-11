@@ -1,4 +1,5 @@
 import { Carousel, Typography, Input, Button } from "@material-tailwind/react";
+import { useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
 import CardSlider from "../components/card";
 import { fetchData } from '../api/popular';
@@ -9,7 +10,12 @@ import Section2 from '../components/Sections2'
 export default function CarouselCustomNavigation() {
     const [restaurants, setRestaurants] = useState([]);
     const [exploreData, setExploreData] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+
+
+
     function shuffle(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -17,7 +23,14 @@ export default function CarouselCustomNavigation() {
         }
         return array;
     }
-
+  const handleInputChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
+    const handleSearch = () => {
+        navigate(`/search?term=${searchTerm}`);
+    };
+    
+    
     useEffect(() => {
         const getData = async () => {
             try {
@@ -34,7 +47,8 @@ export default function CarouselCustomNavigation() {
         };
         getData();
     }, [])
-
+  
+    
     if (loading) {
         return <Typography variant="h4" className="text-center mt-4">Loading...</Typography>;
     }
@@ -46,9 +60,20 @@ export default function CarouselCustomNavigation() {
                     <h1 className="text-center text-3xl md:text-4xl lg:text-5xl poppins font-semibold text-white">Best food waiting for your belly</h1>
 
                     <div className="rounded-full p-1 box-border mt-8 bg-white overflow-hidden ring-red-300 focus:ring-4 w-96 flex items-center">
-                        <input type="text" className="rounded-full px-4 focus:outline-none w-full bg-transparent" placeholder="Search here ......." />
-                        <button className="text-sm bg-primary py-3 px-6 rounded-full text-white poppins ring-red-300 focus:ring-4 transition duration-300 hover:scale-105 transform">Search</button>
-                    </div>
+                    <input 
+                        type="text" 
+                        className="rounded-full px-4 focus:outline-none w-full bg-transparent" 
+                        placeholder="Search here ......." 
+                        value={searchTerm}
+                        onChange={handleInputChange}
+                    />
+                    <button 
+                        className="text-sm bg-primary py-3 px-6 rounded-full text-white poppins ring-red-300 focus:ring-4 transition duration-300 hover:scale-105 transform"
+                        onClick={handleSearch}
+                    >
+                        Search
+                    </button>
+                </div>
                 </div>
             </section>
             <CardSlider data={restaurants} />
